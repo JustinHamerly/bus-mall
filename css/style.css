@@ -1,3 +1,5 @@
+/* --------------------ITEM DISPLAY SECTION IN MAIN */
+
 #ItemDisplay {
   display: flex;
   justify-content: space-between;
@@ -25,6 +27,8 @@
 #ItemDisplay h2{
   text-align:center;
 }
+
+/* --------------------RESULTS SECTION IN MAIN */
 
 #results {
   width: 900px;
