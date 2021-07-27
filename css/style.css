@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   margin:auto;
-  margin-top:50px;
   width: 900px;
 }
 
@@ -12,7 +11,8 @@
   display:flex;
   flex-direction: column;
   justify-content: space-between;
-  
+  margin:auto;
+  margin-top:50px;
 }
 
 #ItemDisplay img{
@@ -33,4 +33,5 @@
 
 #results li, div{
   text-align: center;
+  margin:25px;
 }
