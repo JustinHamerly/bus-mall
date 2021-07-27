@@ -1,13 +1,36 @@
 #ItemDisplay {
   display: flex;
+  justify-content: space-between;
+  margin:auto;
+  margin-top:50px;
+  width: 900px;
 }
 
 #ItemDisplay div{
-  width: 200px;
-  display:inline;
+  width: 250px;
+  height: 300px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
   
 }
 
 #ItemDisplay img{
-  width: 200px;
+  margin:auto;
+  max-height:200px;
+  max-width:250px;
+  justify-content: center;
+}
+
+#ItemDisplay h2{
+  text-align:center;
+}
+
+#results {
+  width: 900px;
+  margin:auto;
+}
+
+#results li, div{
+  text-align: center;
 }

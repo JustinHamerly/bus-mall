@@ -66,19 +66,21 @@ function showThreeProducts(){
 }
 //renders the three products on the page using the renderProduct method by taking the img element and h2 element locations.
 function renderResults(){
+  let ulElem = document.createElement('ul');
+  resultsSectionElem.appendChild(ulElem);
   for(let product of Product.allProducts){
-    let h2Elem = document.createElement('h2');
-    h2Elem.textContent = `${product.productName} has been viewed ${product.shown} times and picked ${product.votes} times.`;
-    resultsSectionElem.appendChild(h2Elem);
+    let liElem = document.createElement('li');
+    liElem.textContent = `${product.productName} has been viewed ${product.shown} times and picked ${product.votes} times.`;
+    ulElem.appendChild(liElem);
   }
 }
-//function to append h2 elements to the section with the results.
+//function to create unordered list and append each items results as list items in the UL.
 function handleButton(e){
   let buttonClicked = e.target.id;
   if (buttonClicked === 'resultsbutton'){
-    itemSectionElem.textContent = '';
+    resultsSectionElem.textContent = '';
     renderResults();
-    itemSectionElem.removeEventListener('click', handleButton);
+    resultsSectionElem.removeEventListener('click', handleButton);
   }
 }
 //removes the renders the list of products with how many times viewed and clicked using the renderResults function.
@@ -103,17 +105,16 @@ function handleClick(e){
     let buttonElem = document.createElement('div');
     buttonElem.id = 'resultsbutton';
     buttonElem.textContent = 'VIEW RESULTS';
-    itemSectionElem.appendChild(buttonElem);
+    resultsSectionElem.appendChild(buttonElem);
   }
 }
-//after click counter hits max clicks, the item section is wiped clear and removed with a button for viewing results.
+//after click counter hits max clicks, the item section is wiped clear and removed with a button for viewing results added to the results section.
 
 
-
-/* --------------------------------------------------LISTENENER */
+/* --------------------------------------------------LISTENENERS */
 itemSectionElem.addEventListener('click', handleClick);
 //adds an event listener to the section defined by the itemSectionElem global variable.
-itemSectionElem.addEventListener('click', handleButton);
+resultsSectionElem.addEventListener('click', handleButton);
 //event listener for getting results from results button
 
 
