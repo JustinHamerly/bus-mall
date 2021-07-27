@@ -1,3 +1,4 @@
+'use strict';
 /* --------------------------------------------------GLOBAL VARIABLES */
 const itemSectionElem = document.getElementById('ItemDisplay');
 //reference to the HTML section for displaying three items
@@ -24,7 +25,6 @@ function Product(productName, imgPath){
   this.imgPath = imgPath;
   this.votes = 0;
   this.shown = 0;
-  Product.allProducts.push(this);
 }
 //Creates new Products and adds them to the array of products.
 Product.allProducts = [];
@@ -35,6 +35,7 @@ console.log(Product.allProducts);
 /* --------------------------------------------------CONSTRUCTOR METHODS */
 Product.prototype.renderProduct = function (img, h2){
   img.src = this.imgPath;
+  img.alt = this.productName;
   h2.textContent = this.productName;
   this.shown ++;
 };
@@ -42,21 +43,27 @@ Product.prototype.renderProduct = function (img, h2){
 
 
 /* --------------------------------------------------GLOBAL FUNCTIONS */
+function pushCreateProduct(productName, imgPath){
+  Product.allProducts.push(new Product(productName, imgPath));
+}
+//Creates a product through the constructor function, and pushes that function to an array.
 function selectThreeProducts(){
-  let firstIndex = Math.floor(Math.random() * Product.allProducts.length);
-  firstProduct = Product.allProducts[firstIndex];
-  let secondIndex = Math.floor(Math.random() * Product.allProducts.length);
-  secondProduct = Product.allProducts[secondIndex];
-  let thirdIndex = Math.floor(Math.random() * Product.allProducts.length);
-  thirdProduct = Product.allProducts[thirdIndex];
-  while(secondProduct === null || secondProduct === firstProduct){
+  const doNotUse =[firstProduct, secondProduct, thirdProduct];
+  while (doNotUse.includes(firstProduct)){
+    let firstIndex = Math.floor(Math.random() * Product.allProducts.length);
+    firstProduct = Product.allProducts[firstIndex];
+  }
+  doNotUse.push(firstProduct);
+  while (doNotUse.includes(secondProduct)){
     let secondIndex = Math.floor(Math.random() * Product.allProducts.length);
     secondProduct = Product.allProducts[secondIndex];
   }
-  while (thirdProduct === null || thirdProduct === firstProduct || thirdProduct === secondProduct){
+  doNotUse.push(secondProduct);
+  while (doNotUse.includes(thirdProduct)){
     let thirdIndex = Math.floor(Math.random() * Product.allProducts.length);
     thirdProduct = Product.allProducts[thirdIndex];
   }
+  doNotUse.push(thirdProduct);
 }
 //selects three products and assigns them to the global variables ensuring the second doesn't match the first and the third doesn't match the first or second.
 function showThreeProducts(){
@@ -119,25 +126,25 @@ resultsSectionElem.addEventListener('click', handleButton);
 
 
 /* --------------------------------------------------CALL FUNCTIONS */
-new Product('Star Wars Bag', './img/bag.jpg');
-new Product('Banana Slicer', './img/banana.jpg');
-new Product('Toilet Paper Multitasker', './img/bathroom.jpg');
-new Product('Fashion Boots', './img/boots.jpg');
-new Product('Ultimate Breakfast Maker', './img/breakfast.jpg');
-new Product('Real Meatball Gum', './img/bubblegum.jpg');
-new Product('Time-out Chair', './img/chair.jpg');
-new Product('Great Old One', './img/cthulhu.jpg');
-new Product('Dog in Disguise', './img/dog-duck.jpg');
-new Product('Rehydrated Dragon Meat', './img/dragon.jpg');
-new Product('Business Lunch Pen Caps', './img/pen.jpg');
-new Product('Dog Slippers', './img/pet-sweep.jpg');
-new Product('Pizza Scissors', './img/scissors.jpg');
-new Product('Shark Skin Sleeping Bag', './img/shark.jpg');
-new Product('Coral Reef Baby Costume', './img/sweep.png');
-new Product('Cozy Grey Goat Sleeping Bag', './img/tauntaun.jpg');
-new Product('Authentic Unicorn Meat', './img/unicorn.jpg');
-new Product('Mistake', './img/water-can.jpg');
-new Product('Challenging Wine Glass', './img/wine-glass.jpg');
+pushCreateProduct('Star Wars Bag', './img/bag.jpg');
+pushCreateProduct('Banana Slicer', './img/banana.jpg');
+pushCreateProduct('Toilet Paper Multitasker', './img/bathroom.jpg');
+pushCreateProduct('Fashion Boots', './img/boots.jpg');
+pushCreateProduct('Ultimate Breakfast Maker', './img/breakfast.jpg');
+pushCreateProduct('Real Meatball Gum', './img/bubblegum.jpg');
+pushCreateProduct('Time-out Chair', './img/chair.jpg');
+pushCreateProduct('Great Old One', './img/cthulhu.jpg');
+pushCreateProduct('Dog in Disguise', './img/dog-duck.jpg');
+pushCreateProduct('Rehydrated Dragon Meat', './img/dragon.jpg');
+pushCreateProduct('Business Lunch Pen Caps', './img/pen.jpg');
+pushCreateProduct('Dog Slippers', './img/pet-sweep.jpg');
+pushCreateProduct('Pizza Scissors', './img/scissors.jpg');
+pushCreateProduct('Shark Skin Sleeping Bag', './img/shark.jpg');
+pushCreateProduct('Coral Reef Baby Costume', './img/sweep.png');
+pushCreateProduct('Cozy Grey Goat Sleeping Bag', './img/tauntaun.jpg');
+pushCreateProduct('Authentic Unicorn Meat', './img/unicorn.jpg');
+pushCreateProduct('Mistake', './img/water-can.jpg');
+pushCreateProduct('Challenging Wine Glass', './img/wine-glass.jpg');
 
 selectThreeProducts();
 showThreeProducts();
