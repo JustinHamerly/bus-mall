@@ -1,14 +1,14 @@
 /* --------------------------------------------------GLOBAL VARIABLES */
-let itemSectionElem = document.getElementById('ItemDisplay');
+const itemSectionElem = document.getElementById('ItemDisplay');
 //reference to the HTML section for displaying three items
-let resultsSectionElem = document.getElementById('results');
+const resultsSectionElem = document.getElementById('results');
 //reference to the HTML section for results
-let firstImgElem = document.getElementById('imgOne');
-let secondImgElem = document.getElementById('imgTwo');
-let thirdImgElem = document.getElementById('imgThree');
-let firstH2Elem = document.getElementById('labelOne');
-let secondH2Elem = document.getElementById('labelTwo');
-let thirdH2Elem = document.getElementById('labelThree');
+const firstImgElem = document.getElementById('imgOne');
+const secondImgElem = document.getElementById('imgTwo');
+const thirdImgElem = document.getElementById('imgThree');
+const firstH2Elem = document.getElementById('labelOne');
+const secondH2Elem = document.getElementById('labelTwo');
+const thirdH2Elem = document.getElementById('labelThree');
 //references to the IMG and h2 elements for the three displayed items
 let firstProduct = null;
 let secondProduct = null;
@@ -66,10 +66,10 @@ function showThreeProducts(){
 }
 //renders the three products on the page using the renderProduct method by taking the img element and h2 element locations.
 function renderResults(){
-  let ulElem = document.createElement('ul');
+  const ulElem = document.createElement('ul');
   resultsSectionElem.appendChild(ulElem);
   for(let product of Product.allProducts){
-    let liElem = document.createElement('li');
+    const liElem = document.createElement('li');
     liElem.textContent = `${product.productName} has been viewed ${product.shown} times and picked ${product.votes} times.`;
     ulElem.appendChild(liElem);
   }
@@ -102,7 +102,7 @@ function handleClick(e){
   if (clickCounter === 25){
     itemSectionElem.textContent = '';
     itemSectionElem.removeEventListener('click', handleClick);
-    let buttonElem = document.createElement('div');
+    const buttonElem = document.createElement('div');
     buttonElem.id = 'resultsbutton';
     buttonElem.textContent = 'VIEW RESULTS';
     resultsSectionElem.appendChild(buttonElem);
