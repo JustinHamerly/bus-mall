@@ -1,0 +1,13 @@
+#ItemDisplay {
+  display: flex;
+}
+
+#ItemDisplay div{
+  width: 200px;
+  display:inline;
+  
+}
+
+#ItemDisplay img{
+  width: 200px;
+}
