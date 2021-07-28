@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FONT LINKS GO HERE -->
-    <title>TITLE HERE</title>
+    <title>BusMall</title>
     <link rel='stylesheet' type="text/css" href="./css/reset.css"></link>
     <link rel='stylesheet' type="text/css" href="./css/style.css"></link>
   </head>
@@ -15,24 +15,31 @@
     </header>
     <main>
       <section id='ItemDisplay'>
-        <div id="ItemOne">
-          <img src="" id='imgOne'>
-          <h2 id='labelOne'></h2>
-        </div>
-        <div id="ItemTwo">
-          <img src="" id='imgTwo'>
-          <h2 id='labelTwo'></h2>
-        </div>
-        <div id="ItemThree">
-          <img src="" id='imgThree'>
-          <h2 id='labelThree'></h2>
-        </div>
+        <H1>SELECT THE ITEM THAT INTERESTS YOU MOST</H1>
+        <section id='threeitems'>
+          <div id="ItemOne">
+            <img src="" id='imgOne'>
+            <h2 id='labelOne'></h2>
+          </div>
+          <div id="ItemTwo">
+            <img src="" id='imgTwo'>
+            <h2 id='labelTwo'></h2>
+          </div>
+          <div id="ItemThree">
+            <img src="" id='imgThree'>
+            <h2 id='labelThree'></h2>
+          </div>
+        </section>
       </section>
       <section id='results'>
-        
+        <div>
+          <canvas id="percentageChart"></canvas>
+          <canvas id="resultsChart"></canvas>
+        </div>
       </section>
     </main>
     <footer>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
       <script src="./JS/app.js"></script>
     </footer>
   </body>
