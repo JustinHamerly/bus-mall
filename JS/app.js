@@ -30,11 +30,11 @@ let seenProductsArray = [];
 
 
 /* ----------------------------------------------------------------------------------------------------CONSTRUTOR FUNCTION */
-function Product(productName, imgPath){
+function Product(productName, imgPath, votes, shown){
   this.productName = productName;
   this.imgPath = imgPath;
-  this.votes = 0;
-  this.shown = 0;
+  this.votes = votes;
+  this.shown = shown;
 }
 //Creates new instances of Products.
 
@@ -61,8 +61,8 @@ Product.prototype.renderProduct = function (img, h2){
 
 
 /* ----------------------------------------------------------------------------------------------------GLOBAL FUNCTIONS */
-function pushCreateProduct(productName, imgPath){
-  Product.allProducts.push(new Product(productName, imgPath));
+function pushCreateProduct(productName, imgPath, votes, shown){
+  Product.allProducts.push(new Product(productName, imgPath, votes, shown));
 }
 //Creates a product through the constructor function, and pushes that function to an array.
 
@@ -190,6 +190,51 @@ function makeResultsChart(){
 }
 //RENDERS THE DATA TABLE
 
+function newPushAndcreate(){
+  if (Product.allProducts.length === 0){
+    pushCreateProduct('Star Wars Bag', './img/bag.jpg', 0, 0);
+    pushCreateProduct('Banana Cutter', './img/banana.jpg', 0, 0);
+    pushCreateProduct('Bathroom Multitasker', './img/bathroom.jpg', 0, 0);
+    pushCreateProduct('Fashion \'Rain\' Boots', './img/boots.jpg', 0, 0);
+    pushCreateProduct('Ultimate Breakfast Maker', './img/breakfast.jpg', 0, 0);
+    pushCreateProduct('Meat Gum', './img/bubblegum.jpg', 0, 0);
+    pushCreateProduct('Time-Out Chair', './img/chair.jpg', 0, 0);
+    pushCreateProduct('Cthulhu', './img/cthulhu.jpg', 0, 0);
+    pushCreateProduct('Dog in Disguise', './img/dog-duck.jpg', 0, 0);
+    pushCreateProduct('Rehydrated Dragon Meat', './img/dragon.jpg', 0, 0);
+    pushCreateProduct('Business Lunch Pen Caps', './img/pen.jpg', 0, 0);
+    pushCreateProduct('Dog Slippers', './img/pet-sweep.jpg', 0, 0);
+    pushCreateProduct('Pizza Scissors', './img/scissors.jpg', 0, 0);
+    pushCreateProduct('Shark Food Sleeping Bag', './img/shark.jpg', 0, 0);
+    pushCreateProduct('70\'s Fringe Baby', './img/sweep.png', 0, 0);
+    pushCreateProduct('Cozy Grey Goat Bag', './img/tauntaun.jpg', 0, 0);
+    pushCreateProduct('Authentic Unicorn Meat', './img/unicorn.jpg', 0, 0);
+    pushCreateProduct('A Factory Mistake', './img/water-can.jpg', 0, 0);
+    pushCreateProduct('Challenging Wine Glass', './img/wine-glass.jpg', 0, 0);
+  }
+}
+//pushes and creates products if the page has no memory of previous results.
+
+function putResultsInStorage(){
+  let resultsArrayString = JSON.stringify(Product.allProducts);
+  localStorage.setItem('results', resultsArrayString);
+}
+//takes the product.allproducts array and converts it to a string, and then puts the stringified results into storage.
+
+function getResultsFromStorage(){
+  let storageProducts = localStorage.getItem('results');
+  //pulls item with key name 'results' from storage and assigns the string to storageProducts
+  if (storageProducts){
+    let parsedResults = JSON.parse(storageProducts);
+    //checks that storageProducts isn't empty, and if it isn't it parses the string retrieved into objects.
+    for (let object of parsedResults){
+      let newProduct = new Product(object.productName, object.imgPath, object.votes, object.shown);
+      Product.allProducts.push(newProduct);
+    }
+    //cycles through the array of parsedReslts, and creates and pushes a new product into the string of all Products.
+  }
+}
+//pulls the item 'results' from storage and if there is a 'results' package it will parse teh results and create new Products using the saved and parsed objects
 
 
 
@@ -201,6 +246,7 @@ function handleButton(e){
     renderResults();
     resultsSectionElem.removeEventListener('click', handleButton);
     makeResultsChart();
+    putResultsInStorage();
   }
 }
 //removes the renders the list of products with how many times viewed and clicked using the renderResults function.
@@ -247,25 +293,7 @@ resultsSectionElem.addEventListener('click', handleButton);
 
 
 /* ----------------------------------------------------------------------------------------------------CALL FUNCTIONS */
-pushCreateProduct('Star Wars Bag', './img/bag.jpg');
-pushCreateProduct('Banana Cutter', './img/banana.jpg');
-pushCreateProduct('Bathroom Multitasker', './img/bathroom.jpg');
-pushCreateProduct('Fashion \'Rain\' Boots', './img/boots.jpg');
-pushCreateProduct('Ultimate Breakfast Maker', './img/breakfast.jpg');
-pushCreateProduct('Meat Gum', './img/bubblegum.jpg');
-pushCreateProduct('Time-Out Chair', './img/chair.jpg');
-pushCreateProduct('Cthulhu', './img/cthulhu.jpg');
-pushCreateProduct('Dog in Disguise', './img/dog-duck.jpg');
-pushCreateProduct('Rehydrated Dragon Meat', './img/dragon.jpg');
-pushCreateProduct('Business Lunch Pen Caps', './img/pen.jpg');
-pushCreateProduct('Dog Slippers', './img/pet-sweep.jpg');
-pushCreateProduct('Pizza Scissors', './img/scissors.jpg');
-pushCreateProduct('Shark Food Sleeping Bag', './img/shark.jpg');
-pushCreateProduct('70\'s Fringe Baby', './img/sweep.png');
-pushCreateProduct('Cozy Grey Goat Bag', './img/tauntaun.jpg');
-pushCreateProduct('Authentic Unicorn Meat', './img/unicorn.jpg');
-pushCreateProduct('A Factory Mistake', './img/water-can.jpg');
-pushCreateProduct('Challenging Wine Glass', './img/wine-glass.jpg');
-
+getResultsFromStorage();
+newPushAndcreate();
 selectThreeProducts();
 showThreeProducts();
