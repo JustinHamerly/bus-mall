@@ -1,4 +1,9 @@
 /* --------------------ITEM DISPLAY SECTION IN MAIN */
+main {
+  display: grid;
+
+}
+
 
 #ItemDisplay {
   display: flex;
