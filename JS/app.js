@@ -6,13 +6,12 @@ const itemSectionElem = document.getElementById('ItemDisplay');
 const resultsSectionElem = document.getElementById('results');
 //reference to the HTML section for results
 
+const listSectionElem = document.getElementById('list');
+
 const firstImgElem = document.getElementById('imgOne');
 const secondImgElem = document.getElementById('imgTwo');
 const thirdImgElem = document.getElementById('imgThree');
-const firstH2Elem = document.getElementById('labelOne');
-const secondH2Elem = document.getElementById('labelTwo');
-const thirdH2Elem = document.getElementById('labelThree');
-//references to the IMG and h2 elements for the three displayed items
+//references to the IMG for the three displayed items
 
 let firstProduct = null;
 let secondProduct = null;
@@ -48,10 +47,9 @@ console.log(Product.allProducts);
 
 
 /* ----------------------------------------------------------------------------------------------------CONSTRUCTOR METHODS */
-Product.prototype.renderProduct = function (img, h2){
+Product.prototype.renderProduct = function (img){
   img.src = this.imgPath;
   img.alt = this.productName;
-  h2.textContent = this.productName;
   this.shown ++;
 };
 //prototype method that takes the img location and h2 location as arguments, and changes the img elements source and the h2 elements text.  It then increments the products shown property by one.
@@ -111,18 +109,18 @@ function getNextIndex(){
 //checks if index number is in the array.  If it is it will find a number not in the array and return that number.
 
 function showThreeProducts(){
-  firstProduct.renderProduct(firstImgElem, firstH2Elem);
-  secondProduct.renderProduct(secondImgElem, secondH2Elem);
-  thirdProduct.renderProduct(thirdImgElem, thirdH2Elem);
+  firstProduct.renderProduct(firstImgElem);
+  secondProduct.renderProduct(secondImgElem);
+  thirdProduct.renderProduct(thirdImgElem);
 }
 //renders the three products on the page using the renderProduct method by taking the img element and h2 element locations.
 
 function renderResults(){
   const ulElem = document.createElement('ul');
-  resultsSectionElem.appendChild(ulElem);
+  listSectionElem.appendChild(ulElem);
   for(let product of Product.allProducts){
     const liElem = document.createElement('li');
-    liElem.textContent = `${product.productName} has been viewed ${product.shown} times and picked ${product.votes} times.`;
+    liElem.textContent = `${product.productName}: Views:${product.shown} Picks:${product.votes}`;
     ulElem.appendChild(liElem);
   }
 }
@@ -130,7 +128,7 @@ function renderResults(){
 
 function makeResultsChart(){
   const canvasElem1 = document.getElementById('resultsChart').getContext('2d');
-  const canvasElem2 = document.getElementById('percentageChart').getContext('2d');
+  // const canvasElem2 = document.getElementById('percentageChart').getContext('2d');
   //variables referencing the two DOM locations for the Canvas tag elements
   let productNames = [];
   let productVotes = [];
@@ -146,29 +144,29 @@ function makeResultsChart(){
   }
   //generates the four data arrays
 
-  const myChart1 = new Chart(canvasElem2, {
-    type: 'bar',
-    data: {
-      labels: productNames,
-      datasets: [{
-        label: 'Percentage of Clicks per Views',
-        data: clickPercent,
-        backgroundColor: 'rgba(107,178,140,.2)',
-        borderColor: 'rgb(107,178,140)',
-        borderWidth: 1,
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-  //myChart1 is a variable housing the bar chart for percentage data
+  // const myChart1 = new Chart(canvasElem2, {
+  //   type: 'bar',
+  //   data: {
+  //     labels: productNames,
+  //     datasets: [{
+  //       label: 'Percentage of Clicks per Views',
+  //       data: clickPercent,
+  //       backgroundColor: 'rgba(107,178,140,.2)',
+  //       borderColor: 'rgb(107,178,140)',
+  //       borderWidth: 1,
+  //     }]
+  //   },
+  //   options: {
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true
+  //       }
+  //     }
+  //   }
+  // });
+  // //myChart1 is a variable housing the bar chart for percentage data
   const myChart2 = new Chart(canvasElem1, {
-    type: 'radar',
+    type: 'bar',
     data: {
       labels: productNames,
       datasets: [{
@@ -247,6 +245,7 @@ function handleButton(e){
     resultsSectionElem.removeEventListener('click', handleButton);
     makeResultsChart();
     putResultsInStorage();
+    document.getElementById('resultsbutton').style.display = 'none';
   }
 }
 //removes the renders the list of products with how many times viewed and clicked using the renderResults function.

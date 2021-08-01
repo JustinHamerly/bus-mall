@@ -1,15 +1,83 @@
-/* --------------------ITEM DISPLAY SECTION IN MAIN */
-main {
-  display: grid;
 
+
+
+
+/* --------------------ITEM DISPLAY SECTION IN MAIN */
+body{
+  margin: auto;
+  background-color:#1b1303;
 }
 
+main {
+  display: grid;
+  grid-template-columns: 50px 200px 1200px 200px 50px;
+  grid-template-rows: 50px 100px 400px 650px 50px;
+  gap: 10px 10px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header{
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  height: 100%;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f5f1;
+}
+
+h1{
+  margin-left:50px;
+  font-family: 'Palette Mosaic', cursive;
+  color:#1b1303;
+  font-size: 60px;
+  
+}
+
+#resultsbutton {
+  width: 300px;
+  height:200px;
+  background-color: #1b1303;
+  color: #f8f5f1;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Palette Mosaic', cursive;
+  font-size: 40px;
+  transition-duration: .5s;
+}
+
+#resultsbutton:hover {
+  background-color: #3b2c0d;
+}
 
 #ItemDisplay {
   display: flex;
   flex-direction: column;
-  margin:auto;
   width: 1200px;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  background-color: #e5efd1;
+}
+
+h2{
+  position: absolute;
+  margin-top:10px;
+  font-size: 16pt;
+  font-weight: bolder;
+  margin-left:325px;
+}
+
+li{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 16px;
 }
 
 #threeitems {
@@ -19,8 +87,8 @@ main {
 }
 
 #ItemOne, #ItemTwo, #ItemThree{
-  width: 400px;
-  height: 100%;
+  width: 300px;
+  height: 350px;
   display:flex;
   flex-direction: column;
   justify-content: space-between;
@@ -30,8 +98,8 @@ main {
 
 #threeitems img{
   margin:auto;
-  max-height:400px;
-  max-width:350px;
+  max-height:300px;
+  max-width:300px;
   justify-content: center;
 }
 
@@ -39,11 +107,25 @@ main {
   text-align: center;
 }
 
+#list{
+  width: 200px;
+  height: 100%;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: #eef1bd;
+}
+
 /* --------------------RESULTS SECTION IN MAIN */
 
 #results {
-  width: 900px;
-  margin:auto;
+  width: 1200px;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  grid-column-start: 3;
+  grid-column-end: 5;
+  background-color: #e5efd1;
 }
 
 #results li, div{
