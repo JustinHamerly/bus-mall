@@ -11,7 +11,7 @@ body{
 main {
   display: grid;
   grid-template-columns: 50px 200px 1200px 200px 50px;
-  grid-template-rows: 50px 100px 400px 650px 50px;
+  grid-template-rows: 50px 100px 650px 400px 50px;
   gap: 10px 10px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -59,8 +59,8 @@ h1{
   display: flex;
   flex-direction: column;
   width: 1200px;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
   grid-column-start: 3;
   grid-column-end: 4;
   background-color: #e5efd1;
@@ -121,8 +121,8 @@ li{
 
 #results {
   width: 1200px;
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
   grid-column-start: 3;
   grid-column-end: 5;
   background-color: #e5efd1;

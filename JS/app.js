@@ -183,6 +183,16 @@ function makeResultsChart(){
         borderWidth: 1,
       }]
     },
+    options: {
+      scales: {
+        x: {
+          stacked: true
+        },
+        y: {
+          stacked: true
+        },
+      }
+    }
   });
   //myChart2 is a radar graph showing the number of votes and # of views for each Product
 }
